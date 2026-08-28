@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Productivity Command Center</title>
+<script>(()=>{const p=new URLSearchParams(location.search).get("scoutTheme");document.documentElement.setAttribute("data-theme",p||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));})();</script>
+<style>
+:root{color-scheme:light;--cp-bg:#f7f4ef;--cp-bg-elevated:#fcfbf8;--cp-surface:#fff;--cp-surface-soft:#f5f5f5;--cp-border:#dedede;--cp-border-strong:#919191;--cp-text:#242424;--cp-text-muted:#5c5c5c;--cp-text-soft:#6f6f6f;--cp-accent:#b11f4b;--cp-accent-hover:#9a1a41;--cp-accent-soft:rgba(177,31,75,.08);--cp-accent-fg:#fff;--cp-success:#16a34a;--cp-danger:#dc2626;--cp-warning:#f59e0b;--cp-link:#0078d4;--cp-shadow:0 18px 48px rgba(0,0,0,.12);--cp-overlay:rgba(255,255,255,.8);--cp-panel:rgba(255,255,255,.86);--cp-panel-strong:rgba(255,255,255,.96);--cp-sheen:rgba(255,255,255,.55);--cp-highlight:rgba(177,31,75,.12)}
+html[data-theme=dark]{color-scheme:dark;--cp-bg:#3d3b3a;--cp-bg-elevated:#343231;--cp-surface:#292929;--cp-surface-soft:#2e2e2e;--cp-border:#474747;--cp-border-strong:#5f5f5f;--cp-text:#dedede;--cp-text-muted:#919191;--cp-text-soft:#b0b0b0;--cp-accent:#fd8ea1;--cp-accent-hover:#fb7b91;--cp-accent-soft:rgba(253,142,161,.14);--cp-accent-fg:#1a1a1a;--cp-success:#4ade80;--cp-danger:#f87171;--cp-warning:#fbbf24;--cp-link:#4da6ff;--cp-shadow:0 18px 48px rgba(0,0,0,.32);--cp-overlay:rgba(41,41,41,.88);--cp-panel:rgba(41,41,41,.72);--cp-panel-strong:rgba(41,41,41,.96);--cp-sheen:rgba(255,255,255,.04);--cp-highlight:rgba(253,142,161,.12)}
+*{box-sizing:border-box}body{margin:0;background:var(--cp-bg);color:var(--cp-text);font-family:"Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif;background-image:radial-gradient(circle at 82% 0,var(--cp-highlight),transparent 34rem)}.wrap{max-width:1440px;margin:auto;padding:32px 34px 54px}header{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:22px}.eyebrow{color:var(--cp-accent);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}.hero-title{font-size:clamp(30px,4vw,52px);line-height:1;margin:8px 0 10px;letter-spacing:-2px}.hero-copy{max-width:680px;color:var(--cp-text-muted);font-size:14px;line-height:1.55}.stamp{color:var(--cp-text-muted);font-size:12px;text-align:right}.tabs{display:flex;gap:8px;margin:24px 0}.tab-btn{background:var(--cp-surface);border:1px solid var(--cp-border);color:var(--cp-text-muted);padding:10px 16px;border-radius:.625rem;cursor:pointer;font-weight:700;font-family:inherit}.tab-btn.active{background:var(--cp-accent);color:var(--cp-accent-fg);border-color:var(--cp-accent)}.tab-panel{display:none}.tab-panel.active{display:block}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}.kpi,.panel,.group,.card{background:var(--cp-panel);border:1px solid var(--cp-border);box-shadow:0 0 2px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.14)}.kpi{padding:17px 18px;border-radius:16px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;inset:auto 0 0;height:3px;background:var(--cp-accent);opacity:.7}.kpi .v{font-size:30px;font-weight:750}.kpi .l,.k{display:block;color:var(--cp-text-muted);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;margin-top:5px}.command-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,.6fr);gap:16px;margin-bottom:24px}.panel{border-radius:16px;padding:20px}.panel-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.panel-title h2{margin:0;font-size:15px;letter-spacing:1.2px;text-transform:uppercase}.signal{color:var(--cp-success);font-size:11px;font-weight:700}.brain{min-height:280px;display:grid;place-items:center;position:relative;overflow:hidden;border-radius:12px;background:var(--cp-surface-soft)}.brain svg{width:min(100%,560px);height:270px;overflow:visible}.brain .synapse{stroke:var(--cp-accent);stroke-width:2;stroke-dasharray:5 10;animation:fire 2.8s linear infinite;filter:drop-shadow(0 0 5px var(--cp-accent))}.brain .node{fill:var(--cp-accent);animation:pulse 1.8s ease-in-out infinite}.brain .core{fill:var(--cp-text);stroke:var(--cp-accent);stroke-width:3}.brain-label{position:absolute;bottom:12px;left:14px;color:var(--cp-text-muted);font-size:11px;letter-spacing:.8px;text-transform:uppercase}@keyframes fire{to{stroke-dashoffset:-45}}@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}.lens{display:grid;gap:12px}.lens-row{display:flex;justify-content:space-between;border-bottom:1px solid var(--cp-border);padding-bottom:11px;font-size:13px}.lens-row strong{color:var(--cp-accent)}.groups{display:grid;gap:14px}.group{border-radius:16px;overflow:hidden}.group summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.group summary::-webkit-details-marker{display:none}.group summary:after{content:"+";font-size:22px;color:var(--cp-accent)}.group[open] summary:after{content:"  '"}.group-title{font-size:16px;font-weight:750}.group-sub{display:block;color:var(--cp-text-muted);font-size:12px;margin-top:4px}.group-count{padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700}.group-count.mapped{border:1px solid var(--cp-success);color:var(--cp-success)}.group-count.unmapped{border:1px solid var(--cp-danger);color:var(--cp-danger)}.group-body{padding:0 14px 14px;display:grid;gap:10px}.card{border-left:4px solid var(--cp-border-strong);border-radius:12px;padding:16px}.card.ok{border-left-color:var(--cp-success)}.card.warn,.card.stale{border-left-color:var(--cp-warning)}.card.error{border-left-color:var(--cp-danger)}.card.running{border-left-color:var(--cp-link)}.card.disabled{opacity:.62}.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.name{font-size:16px;font-weight:750}.pill{font-size:10px;font-weight:750;padding:4px 8px;border-radius:999px;border:1px solid var(--cp-border);color:var(--cp-text-muted);text-transform:uppercase;letter-spacing:.5px}.pill.ok{color:var(--cp-success);border-color:var(--cp-success)}.pill.warn,.pill.stale{color:var(--cp-warning);border-color:var(--cp-warning)}.pill.error{color:var(--cp-danger);border-color:var(--cp-danger)}.pill.running{color:var(--cp-link);border-color:var(--cp-link)}.desc{color:var(--cp-text-muted);font-size:13px;line-height:1.45;margin-top:8px}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-top:14px}.meta div{font-size:12px}.spark{display:flex;gap:3px;margin-top:14px}.spark i{width:10px;height:19px;border-radius:3px;background:var(--cp-border-strong)}.spark i.ok{background:var(--cp-success)}.spark i.error{background:var(--cp-danger)}.spark i.running{background:var(--cp-link)}.out{margin-top:13px;background:var(--cp-surface-soft);border:1px solid var(--cp-border);border-radius:10px;padding:10px 12px;color:var(--cp-text-muted);font-size:12px;max-height:90px;overflow:hidden}.rec-intro{color:var(--cp-text-muted);font-size:13px;line-height:1.5;max-width:860px}.rec-table{width:100%;border-collapse:collapse}.rec-table th,.rec-table td{text-align:left;padding:11px 12px;font-size:12px;border-bottom:1px solid var(--cp-border);vertical-align:top}.rec-table th{color:var(--cp-text-muted);font-size:10px;letter-spacing:1px;text-transform:uppercase}.rec-table td.cat{color:var(--cp-accent);font-weight:700}.gap{margin-top:10px}.gap .name{color:var(--cp-warning)}footer{margin-top:28px;color:var(--cp-text-muted);font-size:11px;border-top:1px solid var(--cp-border);padding-top:14px}@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.command-grid{grid-template-columns:1fr}}@media(max-width:560px){.wrap{padding:22px 16px}.kpis{grid-template-columns:1fr 1fr}header{display:block}.stamp{text-align:left;margin-top:14px}}
+</style>
+<style>html[data-theme=dark]{--cp-bg:#04060b;--cp-bg-elevated:#070c15;--cp-surface:#0a1120;--cp-surface-soft:#091322;--cp-border:#183050;--cp-border-strong:#2d5a86;--cp-text:#e7f4ff;--cp-text-muted:#8ca9c4;--cp-text-soft:#b6d1e8;--cp-panel:rgba(6,14,26,.88);--cp-panel-strong:rgba(8,17,31,.97);--cp-highlight:rgba(72,170,255,.14);--cp-accent:#4fb6ff;--cp-accent-hover:#7cc9ff;--cp-accent-fg:#04121f;--cp-link:#5ec2ff;--cp-success:#3ddc97;--cp-warning:#ffc55c;--cp-danger:#ff6b6b}body{background-image:radial-gradient(circle at 50% 6%,rgba(18,77,130,.20),transparent 40rem),radial-gradient(circle at 8% 92%,rgba(7,35,72,.22),transparent 30rem)}
+.panel,.group,.card,.kpi{position:relative;background:linear-gradient(145deg,var(--cp-panel-strong),var(--cp-panel));box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 18px rgba(18,112,190,.10),0 0 2px rgba(94,194,255,.20)}
+.shimmer:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;background:linear-gradient(115deg,transparent 0%,transparent 40%,rgba(150,222,255,.30) 50%,transparent 60%,transparent 100%);background-size:240% 100%;animation:sheen 1.15s ease-out 1 forwards}
+@keyframes sheen{from{background-position:240% 0}to{background-position:-60% 0}}
+.stage{display:grid;grid-template-columns:minmax(190px,1fr) minmax(360px,2.1fr) minmax(190px,1fr);gap:14px;align-items:center;margin-bottom:22px}
+.group summary{align-items:flex-start}.group summary>div{min-width:0;padding-right:10px}.group summary:after{flex:0 0 auto;line-height:1}
+.howto-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(240px,24%,360px),1fr));gap:14px;margin-top:4px}
+.step{background:linear-gradient(145deg,var(--cp-panel-strong),var(--cp-panel));border:1px solid var(--cp-border);border-radius:14px;padding:16px 18px;position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.step:hover{transform:perspective(1000px) translateZ(14px) translateY(-3px);box-shadow:0 0 26px rgba(38,140,220,.22),0 0 2px rgba(120,205,255,.4)}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--cp-accent);color:var(--cp-accent-fg);font-weight:800;font-size:13px;margin-bottom:10px}
+.step h3{margin:0 0 6px;font-size:14px;letter-spacing:.3px}
+.step p{margin:0;color:var(--cp-text-muted);font-size:12.5px;line-height:1.5}
+.promptbox{position:relative;margin-top:14px;background:#050a13;border:1px solid var(--cp-border);border-radius:14px;padding:18px 18px 16px}
+.promptbox pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:Consolas,"Cascadia Mono",monospace;font-size:12px;line-height:1.62;color:var(--cp-text-soft);max-height:520px;overflow:auto}
+.copy-btn{position:absolute;top:12px;right:12px;background:var(--cp-accent);color:var(--cp-accent-fg);border:0;border-radius:8px;padding:7px 13px;font-weight:800;font-size:11px;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;font-family:inherit}
+.copy-btn.done{background:var(--cp-success)}
+.fact{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid var(--cp-border);padding:10px 0;font-size:13px}
+.fact:last-child{border-bottom:0}.fact strong{color:var(--cp-accent);text-align:right}
+.stage-col{display:grid;gap:12px}
+.kpi{padding:15px 16px;border-radius:14px;text-align:left}
+.brain-wrap{position:relative}
+.brain{min-height:0;height:clamp(280px,34vw,430px);cursor:pointer;border-radius:20px;background:radial-gradient(ellipse at center,rgba(9,50,91,.92),rgba(2,6,13,.99) 74%);box-shadow:inset 0 0 60px rgba(34,158,255,.16),0 0 28px rgba(20,127,219,.16);transition:box-shadow .3s ease,transform .3s ease}
+.brain:hover{box-shadow:inset 0 0 70px rgba(34,158,255,.24),0 0 40px rgba(40,160,255,.26)}
+.brain svg{display:none}
+.brain-canvas{width:100%;height:100%;display:block;position:absolute;inset:0}
+.brain-cta{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:2;border:1px solid rgba(120,205,255,.5);background:rgba(6,20,38,.72);color:#dff2ff;padding:8px 16px;border-radius:999px;font:700 11px/1 "Segoe UI",sans-serif;letter-spacing:1.4px;text-transform:uppercase;box-shadow:0 0 18px rgba(48,168,255,.28)}
+.brain-label{display:none}
+.groups-shell{overflow:hidden;max-height:0;opacity:0;transition:max-height .5s ease,opacity .4s ease}
+.groups-shell.open{max-height:none;opacity:1}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(230px,23%,340px),1fr));gap:14px;align-items:start}
+.group{border-radius:16px;transition:transform .28s cubic-bezier(.2,.8,.3,1.2),box-shadow .28s ease,z-index 0s}
+.group:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 0 26px rgba(40,155,255,.20)}
+.group summary{position:relative;z-index:1;flex-direction:column;align-items:flex-start;gap:8px}
+.group summary:after{position:absolute;right:16px;top:14px}
+.group-count{align-self:flex-start}
+.group[open]{grid-column:1/-1;transform:perspective(1200px) translateZ(28px) scale(1.012);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 46px rgba(56,175,255,.34),0 24px 60px rgba(0,0,0,.55);border-color:var(--cp-border-strong)}
+.group[open] .group-body{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:0 16px 16px}
+@media(max-width:1080px){.stage{grid-template-columns:1fr}.stage-col{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}}
+@media(prefers-reduced-motion:reduce){.group,.brain{transition:none}.shimmer:before{animation:none}}</style>
+</head><body><div class="wrap">
+<header><div><div class="eyebrow">Scout / Personal productivity operating system</div><div class="hero-title">Your execution, connected.</div><div class="hero-copy">A living command center for the automations that protect focus, move strategic work forward, and keep communication in motion.</div></div>
+<div class="stamp">Last refreshed<br><strong>Friday, August 28, 2026 8:36 AM</strong><br>Nightly refresh - 8:00 PM<br><span class="pill warn" style="margin-top:8px;display:inline-block">Portfolio build - data redacted</span></div></header>
+<div class="tabs"><button type="button" class="tab-btn active" id="btn-tab-automations" data-tab="tab-automations">Command center</button><button type="button" class="tab-btn" id="btn-tab-recommendations" data-tab="tab-recommendations">Recommendations &amp; gaps</button><button type="button" class="tab-btn" id="btn-tab-howto" data-tab="tab-howto">How it works &amp; reuse</button></div>
+<div class="tab-panel active" id="tab-automations">
+<div class="stage">
+<div class="stage-col">
+<div class="kpi"><div class="v">13</div><div class="l">Automations mapped</div></div>
+<div class="kpi"><div class="v">13</div><div class="l">Active systems</div></div>
+<div class="kpi"><div class="v">11</div><div class="l">Subject areas</div></div>
+</div>
+<div class="brain-wrap"><div class="brain" id="brain-core" role="button" tabindex="0" aria-expanded="false" aria-controls="groups-shell"><svg viewBox="0 0 600 260" aria-hidden="true"><circle class="core" cx="300" cy="130" r="37"/></svg><div class="brain-cta" id="brain-cta">Click the brain to open functional areas</div></div></div>
+<div class="stage-col">
+<div class="kpi"><div class="v">1</div><div class="l">Signals to review</div></div>
+<div class="kpi"><div class="v">2</div><div class="l">Runs today</div></div>
+<div class="kpi"><div class="v">100%</div><div class="l">Reliability index</div></div>
+</div>
+</div>
+<div class="panel" style="margin-bottom:20px"><div class="panel-title"><h2>Executive lens</h2><span class="signal">SYSTEMS ONLINE - TODAY</span></div><div class="lens" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr));display:grid"><div class="lens-row"><span>Primary posture</span><strong>Execute with signal</strong></div><div class="lens-row"><span>Attention budget</span><strong>Protect deep work</strong></div><div class="lens-row"><span>Coverage model</span><strong>11 subject areas</strong></div><div class="lens-row"><span>Next system pulse</span><strong>8:00 PM refresh</strong></div></div></div>
+<div class="panel" style="margin-bottom:14px"><div class="panel-title"><h2>Heartbeat monitor</h2><span class="pill ok">Active</span></div><div class="desc">Runs every 60 minutes and keeps urgent collaboration signals visible during the active window.</div></div>
+<div class="groups-shell" id="groups-shell"><div class="groups" id="automation-groups">
+<details class="group" data-category="calendar"><summary><span><span class="group-title">Calendar &amp; Scheduling Hygiene</span><span class="group-sub">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</span></span><span class="group-count mapped">7 Automations Mapped</span></summary><div class="group-body">
+<article class="card ok"><div class="card-head"><span class="name">Calendar &amp; Scheduling Hygiene routine</span><span class="pill ok">Healthy</span><span class="pill">condition</span><span class="pill">one-shot</span></div>
+<div class="desc">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</div>
+<div class="meta"><div><span class="k">Schedule</span>Custom schedule</div><div><span class="k">Last run</span>Jul 2, 11:52 AM (57 days ago)</div><div><span class="k">Next run</span>On trigger</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card ok"><div class="card-head"><span class="name">Calendar &amp; Scheduling Hygiene routine 2</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</div>
+<div class="meta"><div><span class="k">Schedule</span>every day at 5am</div><div><span class="k">Last run</span>Aug 28, 5:27 AM (3 hr ago)</div><div><span class="k">Next run</span>Aug 29, 5:00 AM (in 20 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card ok"><div class="card-head"><span class="name">Calendar &amp; Scheduling Hygiene routine 3</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</div>
+<div class="meta"><div><span class="k">Schedule</span>every 30 minutes</div><div><span class="k">Last run</span>Aug 28, 8:30 AM (6 min ago)</div><div><span class="k">Next run</span>Aug 29, 12:00 AM (in 15 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card ok"><div class="card-head"><span class="name">Calendar &amp; Scheduling Hygiene routine 4</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</div>
+<div class="meta"><div><span class="k">Schedule</span>every weekday at 3:40pm</div><div><span class="k">Last run</span>Aug 27, 3:45 PM (17 hr ago)</div><div><span class="k">Next run</span>Aug 28, 3:40 PM (in 7 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card ok"><div class="card-head"><span class="name">Calendar &amp; Scheduling Hygiene routine 5</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</div>
+<div class="meta"><div><span class="k">Schedule</span>every weekday at 8am</div><div><span class="k">Last run</span>Aug 28, 8:09 AM (27 min ago)</div><div><span class="k">Next run</span>Aug 31, 8:00 AM (in 3 days)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card ok"><div class="card-head"><span class="name">Calendar &amp; Scheduling Hygiene routine 6</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</div>
+<div class="meta"><div><span class="k">Schedule</span>every 5 minutes</div><div><span class="k">Last run</span>Aug 28, 8:35 AM (just now)</div><div><span class="k">Next run</span>Aug 29, 12:00 AM (in 15 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card idle"><div class="card-head"><span class="name">Calendar &amp; Scheduling Hygiene routine 7</span><span class="pill idle">Idle</span><span class="pill">schedule</span></div>
+<div class="desc">Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</div>
+<div class="meta"><div><span class="k">Schedule</span>every monday at 7am</div><div><span class="k">Last run</span>Never</div><div><span class="k">Next run</span>Aug 31, 7:00 AM (in 3 days)</div><div><span class="k">Reliability</span>n/a</div><div><span class="k">Total runs</span>0</div></div>
+</article>
+</div></details>
+<details class="group" data-category="meetingprep"><summary><span><span class="group-title">Meeting Preparation &amp; Follow-up</span><span class="group-sub">Converts meetings into tracked commitments instead of letting decisions and action items evaporate after the call.</span></span><span class="group-count mapped">1 Automations Mapped</span></summary><div class="group-body">
+<article class="card ok"><div class="card-head"><span class="name">Meeting Preparation &amp; Follow-up routine</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Converts meetings into tracked commitments instead of letting decisions and action items evaporate after the call.</div>
+<div class="meta"><div><span class="k">Schedule</span>every day at 7:30pm</div><div><span class="k">Last run</span>Aug 28, 5:36 AM (3 hr ago)</div><div><span class="k">Next run</span>Aug 28, 7:30 PM (in 11 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+</div></details>
+<details class="group" data-category="relationship"><summary><span><span class="group-title">Relationship &amp; Team Culture</span><span class="group-sub">Maintains team relationship and culture touchpoints alongside pure task execution.</span></span><span class="group-count mapped">1 Automations Mapped</span></summary><div class="group-body">
+<article class="card stale"><div class="card-head"><span class="name">Relationship &amp; Team Culture routine</span><span class="pill stale">Stale</span><span class="pill">schedule</span><span class="pill">one-shot</span></div>
+<div class="desc">Maintains team relationship and culture touchpoints alongside pure task execution.</div>
+<div class="meta"><div><span class="k">Schedule</span>every tuesday at 12pm</div><div><span class="k">Last run</span>Aug 18, 12:00 PM (10 days ago)</div><div><span class="k">Next run</span>On trigger</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+</div></details>
+<details class="group" data-category="inbox"><summary><span><span class="group-title">Inbox &amp; Communication Triage</span><span class="group-sub">Surfaces urgent items quickly so nothing important sits unseen in a queue.</span></span><span class="group-count unmapped">0 Automations Mapped</span></summary><div class="group-body">
+</div></details>
+<details class="group" data-category="task"><summary><span><span class="group-title">Task &amp; Project Follow-through</span><span class="group-sub">Turns open commitments into tracked, time-bound work instead of relying on memory.</span></span><span class="group-count unmapped">0 Automations Mapped</span></summary><div class="group-body">
+</div></details>
+<details class="group" data-category="review"><summary><span><span class="group-title">Periodic Business Review &amp; Reporting</span><span class="group-sub">Creates a consistent cadence for reviewing what happened and what is next - the backbone of execution tracking.</span></span><span class="group-count mapped">3 Automations Mapped</span></summary><div class="group-body">
+<article class="card ok"><div class="card-head"><span class="name">Periodic Business Review &amp; Reporting routine</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Creates a consistent cadence for reviewing what happened and what is next - the backbone of execution tracking.</div>
+<div class="meta"><div><span class="k">Schedule</span>every day at 5pm</div><div><span class="k">Last run</span>Aug 28, 5:32 AM (3 hr ago)</div><div><span class="k">Next run</span>Aug 28, 5:00 PM (in 8 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card ok"><div class="card-head"><span class="name">Periodic Business Review &amp; Reporting routine 2</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Creates a consistent cadence for reviewing what happened and what is next - the backbone of execution tracking.</div>
+<div class="meta"><div><span class="k">Schedule</span>every day at 8pm</div><div><span class="k">Last run</span>Aug 28, 5:35 AM (3 hr ago)</div><div><span class="k">Next run</span>Aug 28, 8:00 PM (in 11 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+<article class="card idle"><div class="card-head"><span class="name">Periodic Business Review &amp; Reporting routine 3</span><span class="pill idle">Idle</span><span class="pill">schedule</span></div>
+<div class="desc">Creates a consistent cadence for reviewing what happened and what is next - the backbone of execution tracking.</div>
+<div class="meta"><div><span class="k">Schedule</span>every month on the 28th at 9am</div><div><span class="k">Last run</span>Never</div><div><span class="k">Next run</span>Aug 28, 9:00 AM (in 23 min)</div><div><span class="k">Reliability</span>n/a</div><div><span class="k">Total runs</span>0</div></div>
+</article>
+</div></details>
+<details class="group" data-category="goals"><summary><span><span class="group-title">Goal / Priority Tracking</span><span class="group-sub">Keeps day-to-day automation tied back to stated goals so effort maps to outcomes.</span></span><span class="group-count unmapped">0 Automations Mapped</span></summary><div class="group-body">
+</div></details>
+<details class="group" data-category="focus"><summary><span><span class="group-title">Focus Time &amp; Wellness Protection</span><span class="group-sub">Protects uninterrupted work blocks, a leading indicator of sustained productivity.</span></span><span class="group-count unmapped">0 Automations Mapped</span></summary><div class="group-body">
+</div></details>
+<details class="group" data-category="admin"><summary><span><span class="group-title">Administrative &amp; Expense Tasks</span><span class="group-sub">Keeps administrative overhead (expenses, timesheets) from piling up and becoming a time sink.</span></span><span class="group-count unmapped">0 Automations Mapped</span></summary><div class="group-body">
+</div></details>
+<details class="group" data-category="knowledge"><summary><span><span class="group-title">Knowledge Capture &amp; Documentation</span><span class="group-sub">Preserves decisions and context so work is not lost when memory fades.</span></span><span class="group-count unmapped">0 Automations Mapped</span></summary><div class="group-body">
+</div></details>
+<details class="group" data-category="system"><summary><span><span class="group-title">System Health / Meta-monitoring</span><span class="group-sub">Gives visibility into whether your other automations are actually running and healthy - automation for your automation.</span></span><span class="group-count mapped">1 Automations Mapped</span></summary><div class="group-body">
+<article class="card ok"><div class="card-head"><span class="name">System Health / Meta-monitoring routine</span><span class="pill ok">Healthy</span><span class="pill">schedule</span></div>
+<div class="desc">Gives visibility into whether your other automations are actually running and healthy - automation for your automation.</div>
+<div class="meta"><div><span class="k">Schedule</span>every day at 6:15am</div><div><span class="k">Last run</span>Aug 28, 6:15 AM (2 hr ago)</div><div><span class="k">Next run</span>Aug 29, 6:15 AM (in 22 hr)</div><div><span class="k">Reliability</span>100%</div><div><span class="k">Total runs</span>1</div></div>
+</article>
+</div></details>
+</div></div></div>
+<div class="tab-panel" id="tab-recommendations"><div class="panel"><div class="panel-title"><h2>Operating model</h2><span class="signal">DESIGN FOR LEVERAGE</span></div><p class="rec-intro">This view connects each automation to the subject matter it protects. Use it to understand where execution is instrumented, what productivity signal it creates, and which blind spots deserve a new system.</p><table class="rec-table"><thead><tr><th>Automation</th><th>Subject area</th><th>Productivity effect</th></tr></thead><tbody>
+<tr><td>Relationship &amp; Team Culture routine</td><td class="cat">Relationship &amp; Team Culture</td><td>Maintains team relationship and culture touchpoints alongside pure task execution.</td></tr>
+<tr><td>Calendar &amp; Scheduling Hygiene routine</td><td class="cat">Calendar &amp; Scheduling Hygiene</td><td>Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</td></tr>
+<tr><td>Calendar &amp; Scheduling Hygiene routine 2</td><td class="cat">Calendar &amp; Scheduling Hygiene</td><td>Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</td></tr>
+<tr><td>Calendar &amp; Scheduling Hygiene routine 3</td><td class="cat">Calendar &amp; Scheduling Hygiene</td><td>Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</td></tr>
+<tr><td>Calendar &amp; Scheduling Hygiene routine 4</td><td class="cat">Calendar &amp; Scheduling Hygiene</td><td>Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</td></tr>
+<tr><td>Periodic Business Review &amp; Reporting routine</td><td class="cat">Periodic Business Review &amp; Reporting</td><td>Creates a consistent cadence for reviewing what happened and what is next - the backbone of execution tracking.</td></tr>
+<tr><td>Calendar &amp; Scheduling Hygiene routine 5</td><td class="cat">Calendar &amp; Scheduling Hygiene</td><td>Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</td></tr>
+<tr><td>Meeting Preparation &amp; Follow-up routine</td><td class="cat">Meeting Preparation &amp; Follow-up</td><td>Converts meetings into tracked commitments instead of letting decisions and action items evaporate after the call.</td></tr>
+<tr><td>Periodic Business Review &amp; Reporting routine 2</td><td class="cat">Periodic Business Review &amp; Reporting</td><td>Creates a consistent cadence for reviewing what happened and what is next - the backbone of execution tracking.</td></tr>
+<tr><td>System Health / Meta-monitoring routine</td><td class="cat">System Health / Meta-monitoring</td><td>Gives visibility into whether your other automations are actually running and healthy - automation for your automation.</td></tr>
+<tr><td>Calendar &amp; Scheduling Hygiene routine 6</td><td class="cat">Calendar &amp; Scheduling Hygiene</td><td>Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</td></tr>
+<tr><td>Periodic Business Review &amp; Reporting routine 3</td><td class="cat">Periodic Business Review &amp; Reporting</td><td>Creates a consistent cadence for reviewing what happened and what is next - the backbone of execution tracking.</td></tr>
+<tr><td>Calendar &amp; Scheduling Hygiene routine 7</td><td class="cat">Calendar &amp; Scheduling Hygiene</td><td>Keeps your calendar accurate and conflict-free so time-tracking and availability data stay trustworthy.</td></tr>
+</tbody></table></div><div class="panel" style="margin-top:14px"><div class="panel-title"><h2>Coverage gaps</h2><span class="pill warn">PRIORITIZE</span></div><p class="rec-intro">These areas are not currently represented in your automation topology and may be hiding productivity leakage.</p>
+<div class="card gap"><div class="card-head"><span class="name">Inbox &amp; Communication Triage</span><span class="pill warn">gap</span></div><div class="desc">Surfaces urgent items quickly so nothing important sits unseen in a queue.</div><div class="out"><strong>Recommended addition:</strong> A digest automation that triages inbox/Teams messages into an actionable summary at set intervals.</div></div>
+<div class="card gap"><div class="card-head"><span class="name">Task &amp; Project Follow-through</span><span class="pill warn">gap</span></div><div class="desc">Turns open commitments into tracked, time-bound work instead of relying on memory.</div><div class="out"><strong>Recommended addition:</strong> A daily task/to-do groomer that flags overdue items, re-prioritizes, and nudges on stalled work.</div></div>
+<div class="card gap"><div class="card-head"><span class="name">Goal / Priority Tracking</span><span class="pill warn">gap</span></div><div class="desc">Keeps day-to-day automation tied back to stated goals so effort maps to outcomes.</div><div class="out"><strong>Recommended addition:</strong> A weekly check against top goals/OKRs that reports drift and suggests re-prioritization.</div></div>
+<div class="card gap"><div class="card-head"><span class="name">Focus Time &amp; Wellness Protection</span><span class="pill warn">gap</span></div><div class="desc">Protects uninterrupted work blocks, a leading indicator of sustained productivity.</div><div class="out"><strong>Recommended addition:</strong> A focus-time protector that blocks or declines meeting requests during designated deep-work hours.</div></div>
+<div class="card gap"><div class="card-head"><span class="name">Administrative &amp; Expense Tasks</span><span class="pill warn">gap</span></div><div class="desc">Keeps administrative overhead (expenses, timesheets) from piling up and becoming a time sink.</div><div class="out"><strong>Recommended addition:</strong> An expense/timesheet reminder that nudges before submission deadlines and flags missing entries.</div></div>
+<div class="card gap"><div class="card-head"><span class="name">Knowledge Capture &amp; Documentation</span><span class="pill warn">gap</span></div><div class="desc">Preserves decisions and context so work is not lost when memory fades.</div><div class="out"><strong>Recommended addition:</strong> An automation that captures key decisions or notes from meetings/chats into a running knowledge log.</div></div>
+</div></div>
+<div class="tab-panel" id="tab-howto">
+<div class="panel"><div class="panel-title"><h2>What this dashboard does</h2><span class="signal">SINGLE SOURCE OF TRUTH</span></div><p class="rec-intro">This is a self-updating command center for your personal productivity and business-execution operating system. Every automation you run is discovered automatically, classified into the subject area it protects, scored for reliability, and rendered as one hierarchical view with you at the center. It answers three questions at a glance: what is running, is it healthy, and what is missing.</p><div class="lens" style="margin-top:16px">
+<div class="fact"><span>Automations discovered and rendered</span><strong>13</strong></div>
+<div class="fact"><span>Subject areas tracked</span><strong>11</strong></div>
+<div class="fact"><span>Subject areas with live coverage</span><strong>5</strong></div>
+<div class="fact"><span>Coverage gaps flagged for action</span><strong>6</strong></div>
+<div class="fact"><span>Reliability index across all systems</span><strong>100%</strong></div>
+<div class="fact"><span>Refresh cadence</span><strong>Nightly at 8:00 PM, plus on demand</strong></div>
+<div class="fact"><span>Data source</span><strong>Local Microsoft Scout automation store</strong></div>
+<div class="fact"><span>Published to</span><strong>OneDrive - Automation Dashboard folder</strong></div>
+</div></div>
+<div class="panel" style="margin-top:14px"><div class="panel-title"><h2>How it works</h2><span class="signal">END TO END PIPELINE</span></div><div class="howto-grid">
+<div class="step"><span class="n">1</span><h3>Discover</h3><p>A PowerShell generator reads your local Scout automation definitions and per-automation run history. Nothing is hand-maintained, so the dashboard can never drift from reality.</p></div>
+<div class="step"><span class="n">2</span><h3>Classify</h3><p>Each automation is matched by keyword against a library of productivity subject areas: calendar hygiene, meeting follow-through, inbox triage, deep work protection, goal tracking, reporting cadence, and more.</p></div>
+<div class="step"><span class="n">3</span><h3>Score</h3><p>Run history is turned into health status, a success rate, a recency check, and a sparkline. Anything stale, failing, or silent is surfaced as a signal to review instead of being buried.</p></div>
+<div class="step"><span class="n">4</span><h3>Detect gaps</h3><p>Subject areas with zero mapped automations become explicit coverage gaps with a recommended addition, so the dashboard tells you what to build next rather than only what exists.</p></div>
+<div class="step"><span class="n">5</span><h3>Render</h3><p>Output is a single self-contained HTML file: an animated neural core at the center, KPIs flanking it, and click-to-expand functional areas that pop out in a responsive grid.</p></div>
+<div class="step"><span class="n">6</span><h3>Refresh and notify</h3><p>A nightly 8:00 PM automation regenerates the file into OneDrive and pings you in Teams with the delta and recommended changes, so review is push, not pull.</p></div>
+</div></div>
+<div class="panel" style="margin-top:14px"><div class="panel-title"><h2>Reusable prompt</h2><span class="signal">COPY AND GO</span></div><p class="rec-intro">Paste this into a fresh Microsoft Scout session to rebuild this entire system from scratch for anyone. It is written to be portable: no names, no paths, no assumptions about which automations exist.</p>
+<div class="promptbox"><button type="button" class="copy-btn" id="copy-prompt">Copy prompt</button><pre id="prompt-text">
+GOAL
+Build me a self-updating &quot;Personal Productivity and Business Execution Command Center&quot;:
+a single, visually stunning HTML dashboard that tracks every automation I run, groups
+them by the area of my life/work they protect, scores their health, and tells me what
+is missing. Publish it to my OneDrive and refresh it automatically every night.
+
+DATA SOURCE
+Read my local automation definitions and their run history from my agent&#39;s automation
+store. Do not hand-maintain any list. Everything on the dashboard must be derived from
+live data so it can never drift from reality. For each automation capture: name,
+description, schedule, enabled/disabled state, last run time, last run status, last
+output snippet, and the last several runs for a trend.
+
+CLASSIFICATION MODEL
+Do not present automations as a flat list. Classify each one by keyword into the
+subject area it actually protects. Use a library like this, and extend it if my
+automations suggest a better grouping:
+  - Calendar and scheduling hygiene
+  - Meeting preparation and follow-up
+  - Inbox and communication triage
+  - Task and project follow-through
+  - Goal and priority tracking
+  - Focus time and wellness protection
+  - Periodic business review and reporting
+  - Relationship and team culture
+  - Knowledge capture and documentation
+  - Administrative and expense tasks
+  - Personal branding and social presence
+  - Strategic projects and initiatives
+  - System health / meta-monitoring
+For every subject area, write one sentence on why it matters to productivity, and one
+concrete recommendation for what to add if it is thin.
+
+SCORING
+Turn run history into: a health state (healthy / warning / stale / error / running),
+a success rate percentage, a human-readable &quot;last run&quot; recency, and a sparkline of
+recent runs. Anything failing, stale, or silent must be promoted to a &quot;signals to
+review&quot; count at the top, never buried.
+
+GAP ANALYSIS
+Any subject area with zero mapped automations is an explicit coverage gap. Show gaps
+as their own cards with the productivity risk they create and a specific recommended
+automation to close them. The dashboard must tell me what to build next, not only what
+already exists.
+
+DESIGN - THIS IS THE SHOWCASE PIECE
+  - Near-black background, single cool accent color, high contrast, premium and
+    futuristic. Treat this as the flagship artifact I demo to other people.
+  - Put ME at the center: an animated neural &quot;brain&quot; core rendered on canvas with
+    drifting particles, glowing nodes, and proximity-linked synapse lines that shimmer
+    and pulse. It should read as 3D and alive, not a static graphic.
+  - Surround the brain with KPI stat cards - a three-column stage with stats on the
+    left, the brain in the middle, and stats on the right. Never stack everything
+    vertically.
+  - Clicking the brain expands the functional areas. Lay them out left to right in a
+    responsive auto-fill grid at roughly a quarter of the screen width each, so it
+    reflows to 4 / 3 / 2 / 1 columns as the browser resizes.
+  - Clicking a functional area pops it out: it takes the full row width, lifts toward
+    the viewer with a subtle 3D transform and a strong glow, and reveals its
+    automations. Only one area open at a time (accordion).
+  - Shimmer/sheen must fire only on click as a short one-shot animation. No permanent
+    looping shine - that reads cheap.
+  - Everything must be one self-contained HTML file. No external assets, no CDN, no
+    build step.
+
+TABS
+  1. Command center - the brain, KPIs, and the drill-through functional areas.
+  2. Recommendations and gaps - automation-to-subject-area mapping with the
+     productivity effect of each, plus the coverage gaps and what to add.
+  3. How it works and reuse - what the dashboard does, the end-to-end pipeline, and
+     this prompt in a copy-to-clipboard block.
+
+AUTOMATION AND NOTIFICATION
+  - Write the generator as a script so it can be re-run at any time and is the single
+    source of truth for the dashboard.
+  - Create a scheduled automation that runs it every night at 8:00 PM.
+  - After each refresh, message me in Teams with a short summary: what changed, what
+    needs attention, and the top recommended change - then ask whether I want to
+    adjust anything.
+  - Publish the HTML into a dedicated folder in my OneDrive so it syncs everywhere.
+
+QUALITY BAR
+  - Output must be pure ASCII. Sanitize smart quotes, em dashes, and bullet glyphs
+    before writing the file so nothing renders as mojibake.
+  - Verify the result in a browser before declaring done: confirm the canvas renders,
+    the grid produces the expected column count at a wide viewport, the brain toggle
+    works, and expanding an area pops it out and collapses the others.
+  - Re-run the generator end to end and confirm it exits clean.
+</pre></div></div>
+</div>
+<script>
+document.querySelectorAll(".tab-btn").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.tab).classList.add("active");b.classList.add("active")}));
+(function(){var btn=document.getElementById("copy-prompt");if(!btn)return;btn.addEventListener("click",function(){var t=document.getElementById("prompt-text").innerText;var done=function(){btn.textContent="Copied";btn.classList.add("done");setTimeout(function(){btn.textContent="Copy prompt";btn.classList.remove("done")},1800)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}else{var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(e){}document.body.removeChild(ta)}})})();
+</script>
+<footer>Generated by Generate-AutomationDashboard.ps1 from local Microsoft Scout automation data on 2026-08-28 08:36:42. Subject areas are derived from automation intent and refreshed nightly.</footer>
+</div></body></html>
+<script>
+(()=>{
+const host=document.getElementById("brain-core");if(!host)return;
+const c=document.createElement("canvas");c.className="brain-canvas";c.setAttribute("aria-label","Animated 3D neural brain map");host.insertBefore(c,host.firstChild);
+const ctx=c.getContext("2d");let W=0,H=0;const N=170,pts=[];
+function dims(){const r=host.getBoundingClientRect();W=r.width;H=r.height;const d=window.devicePixelRatio||1;c.width=W*d;c.height=H*d;ctx.setTransform(d,0,0,d,0,0);}
+function seed(){pts.length=0;for(let i=0;i<N;i++){let x,y;do{x=(Math.random()*2-1);y=(Math.random()*2-1);}while((x*x)/0.85+(y*y)/0.55>1);pts.push({x:W/2+x*W*0.38,y:H/2+y*H*0.36,vx:(Math.random()-.5)*0.18,vy:(Math.random()-.5)*0.18,r:Math.random()*1.9+0.5,ph:Math.random()*7});}}
+function frame(t){
+ctx.clearRect(0,0,W,H);const cx=W/2,cy=H/2,rx=W*0.39,ry=H*0.38;
+ctx.save();ctx.globalCompositeOperation="lighter";
+for(const p of pts){p.x+=p.vx;p.y+=p.vy;const nx=(p.x-cx)/rx,ny=(p.y-cy)/ry;if(nx*nx+ny*ny>1){p.vx*=-1;p.vy*=-1;p.x+=p.vx*2;p.y+=p.vy*2;}}
+const link=Math.min(58,Math.max(34,W*0.05));
+for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j];const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<link){ctx.strokeStyle="rgba(83,190,255,"+(0.16*(1-d/link))+")";ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}}
+for(const p of pts){const g=1.4+Math.sin(t*0.004+p.ph)*0.85;ctx.shadowBlur=13;ctx.shadowColor="rgba(125,220,255,.95)";ctx.fillStyle="rgba(238,250,255,"+(0.55+g/4)+")";ctx.beginPath();ctx.arc(p.x,p.y,p.r*g,0,Math.PI*2);ctx.fill();}
+ctx.shadowBlur=0;ctx.strokeStyle="rgba(76,186,255,.45)";ctx.lineWidth=1.2;ctx.setLineDash([2,7]);ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);ctx.stroke();ctx.restore();
+requestAnimationFrame(frame);}
+function boot(){dims();seed();}
+boot();let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(boot,120);});requestAnimationFrame(frame);
+const shell=document.getElementById("groups-shell"),cta=document.getElementById("brain-cta");
+function toggle(){const open=shell.classList.toggle("open");host.setAttribute("aria-expanded",open?"true":"false");cta.textContent=open?"Click the brain to collapse functional areas":"Click the brain to open functional areas";if(open)shell.scrollIntoView({behavior:"smooth",block:"start"});}
+host.addEventListener("click",toggle);
+host.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});
+document.querySelectorAll(".group").forEach(g=>{g.addEventListener("toggle",()=>{if(!g.open)return;document.querySelectorAll(".group[open]").forEach(o=>{if(o!==g)o.open=false;});g.classList.remove("shimmer");void g.offsetWidth;g.classList.add("shimmer");setTimeout(()=>g.classList.remove("shimmer"),1300);});});
+})();
+</script>
